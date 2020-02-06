@@ -3,32 +3,35 @@ package fr.d2factory.libraryapp.service;
 import java.time.LocalDate;
 import java.util.List;
 
+import fr.d2factory.libraryapp.dao.BookRepository;
 import fr.d2factory.libraryapp.entity.book.Book;
 
 public class BookServiceImpl implements BookService {
 
+	private BookRepository bookRepository;
+	
+	public BookServiceImpl(BookRepository bookRepository) {
+		this.bookRepository = bookRepository;
+	}
+	
 	@Override
 	public void addBooks(List<Book> books) {
-		// TODO Auto-generated method stub
-		
+		bookRepository.addBooks(books);
 	}
 
 	@Override
 	public Book findBook(long isbnCode) {
-		// TODO Auto-generated method stub
-		return null;
+		return bookRepository.findBook(isbnCode);
 	}
 
 	@Override
 	public void saveBookBorrow(Book book, LocalDate borrowedAt) {
-		// TODO Auto-generated method stub
-		
+		bookRepository.saveBookBorrow(book, borrowedAt);
 	}
 
 	@Override
 	public LocalDate findBorrowedBookDate(Book book) {
-		// TODO Auto-generated method stub
-		return null;
+		return bookRepository.findBorrowedBookDate(book);
 	}
 
 }
