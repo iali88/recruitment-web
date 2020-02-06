@@ -1,4 +1,4 @@
-package fr.d2factory.libraryapp.member;
+package fr.d2factory.libraryapp.entity.member;
 
 import fr.d2factory.libraryapp.library.Library;
 

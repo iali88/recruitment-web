@@ -4,8 +4,10 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import fr.d2factory.libraryapp.book.Book;
-import fr.d2factory.libraryapp.book.BookRepository;
+
+import fr.d2factory.libraryapp.dao.BookRepositoryImpl;
+import fr.d2factory.libraryapp.entity.book.Book;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -18,7 +20,7 @@ import org.junit.jupiter.api.Test;
  */
 public class LibraryTest {
     private Library library ;
-    private BookRepository bookRepository;
+    private BookRepositoryImpl bookRepository;
     private static List<Book> books;
 
 
