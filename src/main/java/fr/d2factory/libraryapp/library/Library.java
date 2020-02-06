@@ -1,9 +1,10 @@
 package fr.d2factory.libraryapp.library;
 
+import java.time.LocalDate;
+
 import fr.d2factory.libraryapp.entity.book.Book;
 import fr.d2factory.libraryapp.entity.member.Member;
-
-import java.time.LocalDate;
+import fr.d2factory.libraryapp.service.BookService;
 
 /**
  * The library class is in charge of stocking the books and managing the return delays and members
@@ -37,4 +38,6 @@ public interface Library {
      * @see Member#payBook(int)
      */
     void returnBook(Book book, Member member);
+    
+    public BookService getBookService();
 }

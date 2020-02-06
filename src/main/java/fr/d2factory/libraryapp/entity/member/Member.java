@@ -15,8 +15,14 @@ public abstract class Member {
 	
 	private String lastName;
 	
+	/**
+	 * List containing the books borrowed by a member
+	 */
 	private List<Book> borrowedBooks;
 	
+	/**
+	 * Price for a day 
+	 */
 	private static final float price = 0.10F;
 	
 	public Member(String firstName, String lastName, List<Book> borrowedBooks, float wallet) {
@@ -68,6 +74,22 @@ public abstract class Member {
 
 	public void setBorrowedBooks(List<Book> borrowedBooks) {
 		this.borrowedBooks = borrowedBooks;
+	}
+	
+	/**
+	 * Allow to know if member has already borrowed a book
+	 * @return true if he has borrowed a book before, else false
+	 */
+	public boolean hasBorrowedBooks() {
+		return !borrowedBooks.isEmpty();
+	}
+	
+	public void addBorrowedBook(Book book) {
+		borrowedBooks.add(book);
+	}
+	
+	public void removeBook(Book book) {
+		borrowedBooks.remove(book);
 	}
 	
 	public static float getPrice() {

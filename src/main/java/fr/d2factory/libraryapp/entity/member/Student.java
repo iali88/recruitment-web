@@ -6,8 +6,14 @@ import fr.d2factory.libraryapp.entity.book.Book;
 
 public class Student extends Member {
 
+	/**
+	 * Renting limit (30 days)
+	 */
 	private static final long rentLimit = 30;
 	
+	/**
+	 * Year of the student
+	 */
 	private Year year;
 	
 	public Student(String firstName, String lastName, List<Book> borrowedBooks, float wallet, Year year) {
@@ -27,9 +33,12 @@ public class Student extends Member {
 		this.year = year;
 	}
 
+	/**
+	 * Calculate the fees and set the member's balance 
+	 */
 	@Override
 	public void payBook(int numberOfDays) {
-		// TODO Auto-generated method stub
+		this.setWallet(getWallet() - ((float)numberOfDays * getPrice()));
 		
 	}
 	

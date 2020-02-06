@@ -2,9 +2,11 @@ package fr.d2factory.libraryapp.service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 import fr.d2factory.libraryapp.dao.BookRepository;
 import fr.d2factory.libraryapp.entity.book.Book;
+import fr.d2factory.libraryapp.entity.book.ISBN;
 
 public class BookServiceImpl implements BookService {
 
@@ -32,6 +34,22 @@ public class BookServiceImpl implements BookService {
 	@Override
 	public LocalDate findBorrowedBookDate(Book book) {
 		return bookRepository.findBorrowedBookDate(book);
+	}
+	
+	@Override
+	public void restituteBook(Book book) {
+		bookRepository.restituteBook(book);
+	}
+
+	@Override
+	public Map<ISBN, Book> getAvailableBooks() {
+		
+		return bookRepository.getAvailableBooks();
+	}
+
+	@Override
+	public Map<Book, LocalDate> getBorrowedBooks() {
+		return bookRepository.getBorrowedBooks();
 	}
 
 }
