@@ -49,11 +49,16 @@ public class LibraryImpl implements Library {
 			// get the book by its isbn code
 			book = bookService.findBook(isbnCode);
 
-			// add to the member's list of borrowed book
-			member.addBorrowedBook(book);
-
-			// book is borrowed, Register the operation
-			bookService.saveBookBorrow(book, borrowedAt);
+			// only if the book is available
+			if(book != null) {
+				// add to the member's list of borrowed book
+				member.addBorrowedBook(book);
+	
+				// book is borrowed, Register the operation
+				bookService.saveBookBorrow(book, borrowedAt);
+			} else {
+				System.out.println("The book is not available");
+			}
 
 		} else {
 			System.out.println("You have to be a student or a resident to borrow a book.");

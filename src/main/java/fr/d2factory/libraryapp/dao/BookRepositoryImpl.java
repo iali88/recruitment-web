@@ -39,7 +39,7 @@ public class BookRepositoryImpl implements BookRepository {
 	 * not found
 	 * 
 	 * @param isbnCode the isbn code
-	 * @return the book we are searching for
+	 * @return the book we are searching for, null if not found
 	 */
 	public Book findBook(long isbnCode) {
 		

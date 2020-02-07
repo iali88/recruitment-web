@@ -10,14 +10,14 @@ import fr.d2factory.libraryapp.entity.book.ISBN;
 public interface BookRepository {
 	
 	public void addBooks(List<Book> books);
+	
+	public Book findBook(long isbnCode);
 
-    public Book findBook(long isbnCode);
-
-    public void saveBookBorrow(Book book, LocalDate borrowedAt); 
+	public void saveBookBorrow(Book book, LocalDate borrowedAt); 
     
-    public LocalDate findBorrowedBookDate(Book book);
+	public LocalDate findBorrowedBookDate(Book book);
     
-    public void restituteBook(Book book);
+	public void restituteBook(Book book);
 
 	public Map<ISBN, Book> getAvailableBooks();
 
