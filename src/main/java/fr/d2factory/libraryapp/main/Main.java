@@ -9,6 +9,7 @@ import fr.d2factory.libraryapp.dao.BookRepository;
 import fr.d2factory.libraryapp.dao.BookRepositoryImpl;
 import fr.d2factory.libraryapp.entity.book.Book;
 import fr.d2factory.libraryapp.entity.book.ISBN;
+import fr.d2factory.libraryapp.entity.member.Member;
 import fr.d2factory.libraryapp.entity.member.Resident;
 import fr.d2factory.libraryapp.library.HasLateBooksException;
 import fr.d2factory.libraryapp.library.Library;
@@ -25,7 +26,7 @@ public class Main {
 		Library lib = new LibraryImpl(bookService);
 
 		//Student bob = new Student("Bob", "Smith", new ArrayList<Book>(), 100, Year.L1);
-		Resident john = new Resident("John", "Silva", new ArrayList<Book>(), 100);
+		Member john = new Resident("John", "Silva", new ArrayList<Book>(), 100);
 		
 		ArrayList<Book> books = new ArrayList<Book>();
 		books.add(new Book("Harry Potter", "J.K. Rowling", new ISBN(465789645L)));
