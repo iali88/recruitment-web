@@ -41,7 +41,7 @@ public class LibraryImpl implements Library {
 			if (member.hasBorrowedBooks()) {
 				if (hasLateBooks(member)) {
 					throw new HasLateBooksException("Membre " + member.getFirstName() + " " + member.getLastName()
-							+ " possède des livres à rendre!");
+							+ " has books to return !");
 				}
 			}
 

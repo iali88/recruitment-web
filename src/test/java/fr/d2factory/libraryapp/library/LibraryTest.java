@@ -67,7 +67,7 @@ public class LibraryTest {
 				  () -> assertEquals(expectedBook, book, "Books are not equal."),
 				  () -> assertEquals(book.getIsbn().getIsbnCode(), 3326456467846L, "IsbnCode are not equal."));
 		
-		Resident james = new Resident("James", "Smith", new ArrayList<Book>(), 100);
+		Member james = new Resident("James", "Smith", new ArrayList<Book>(), 100);
 		Book book2 = lib.borrowBook(46578964513L, james, LocalDate.now());
 		Book expectedBook2 = books.get(0);
 
@@ -84,7 +84,7 @@ public class LibraryTest {
 		Map<ISBN, Book> availableBooks = bookService.getAvailableBooks();
 		int initialBooksCount = availableBooks.size();
 		
-		Book book = lib.borrowBook(3326456467846L, john, LocalDate.now());
+		lib.borrowBook(3326456467846L, john, LocalDate.now());
 		Book book2 = lib.borrowBook(3326456467846L, john, LocalDate.now());
 		Book book3 = availableBooks.get(new ISBN(3326456467846L));
 
@@ -96,7 +96,7 @@ public class LibraryTest {
 	@Test
 	void residents_are_taxed_10cents_for_each_day_they_keep_a_book() {
 
-		Resident john = new Resident("Johnny", "Cage", new ArrayList<Book>(), 100);
+		Member john = new Resident("Johnny", "Cage", new ArrayList<Book>(), 100);
 		float walletBefore = john.getWallet();
 		
 		Book book = lib.borrowBook(3326456467846L, john, LocalDate.now().minusDays(10));
@@ -111,7 +111,7 @@ public class LibraryTest {
 	@Test
 	void students_pay_10_cents_the_first_30days() {
 
-		Student john = new Student("John", "Doe", new ArrayList<Book>(), 100, Year.L2);
+		Member john = new Student("John", "Doe", new ArrayList<Book>(), 100, Year.L2);
 		float walletBefore = john.getWallet();
 		
 		Book book = lib.borrowBook(46578964513L, john, LocalDate.now().minusDays(30));
@@ -127,7 +127,7 @@ public class LibraryTest {
 	@Test
 	void students_in_1st_year_are_not_taxed_for_the_first_15days() {
 
-		Student john = new Student("John", "Doe", new ArrayList<Book>(), 100, Year.L1);
+		Member john = new Student("John", "Doe", new ArrayList<Book>(), 100, Year.L1);
 
 		float walletBefore = john.getWallet();
 		Book book = lib.borrowBook(3326456467846L, john, LocalDate.now().minusDays(15));
@@ -142,7 +142,7 @@ public class LibraryTest {
 	@Test
 	void residents_pay_20cents_for_each_day_they_keep_a_book_after_the_initial_60days() {
 
-		Resident john = new Resident("Johnny", "Cage", new ArrayList<Book>(), 100);
+		Member john = new Resident("Johnny", "Cage", new ArrayList<Book>(), 100);
 		float walletBefore = john.getWallet();
 		
 		Book book = lib.borrowBook(3326456467846L, john, LocalDate.now().minusDays(70));
@@ -160,27 +160,27 @@ public class LibraryTest {
 
 		Member john = new Student("John", "Doe", new ArrayList<Book>(), 100, Year.L1);
 		long rentLimit = Student.getRentLimit();		
-		Book book = lib.borrowBook(3326456467846L, john, LocalDate.now().minusDays(rentLimit+1));
+		lib.borrowBook(3326456467846L, john, LocalDate.now().minusDays(rentLimit+1));
 
 		Resident james = new Resident("James", "Smith", new ArrayList<Book>(), 100);
 		rentLimit = Resident.getRentLimit();
-		Book book2 = lib.borrowBook(46578964513L, james, LocalDate.now().minusDays(rentLimit+1));
+		lib.borrowBook(46578964513L, james, LocalDate.now().minusDays(rentLimit+1));
 		
 		HasLateBooksException thrownForStudent = assertThrows(HasLateBooksException.class, () -> {
 			lib.borrowBook(3326456467846L, john, LocalDate.now());
 		}, "Should throw exception HasLateBooksException.");
 
-		assertTrue(thrownForStudent.getMessage().equals("Membre John Doe possède des livres à rendre!"));
+		assertTrue(thrownForStudent.getMessage().equals("Membre John Doe has books to return !"));
 		
 		HasLateBooksException thrownForResident = assertThrows(HasLateBooksException.class, () -> {
 			lib.borrowBook(46578964513L, james, LocalDate.now());
 		}, "Should throw exception HasLateBooksException.");
 		
-		assertTrue(thrownForResident.getMessage().equals("Membre James Smith possède des livres à rendre!"));
+		assertTrue(thrownForResident.getMessage().equals("Membre James Smith has books to return !"));
 		
 	}
 	
-	// Tests supplémentaires 
+	// Added tests 
 	/*
 	@Test
 	void member_cannot_borrow_a_book_if_book_is_not_available() {
@@ -195,5 +195,5 @@ public class LibraryTest {
 			assertAll(() -> assertTrue(book2==null),
 					  () -> assertEquals(expectedBook, book, "Books are not equal."));
 	}
-    */	
+    */
 }
