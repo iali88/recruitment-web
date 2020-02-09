@@ -56,9 +56,7 @@ public class LibraryImpl implements Library {
 	
 				// book is borrowed, Register the operation
 				bookService.saveBookBorrow(book, borrowedAt);
-			} else {
-				System.out.println("The book is not available");
-			}
+			} 
 
 		} else {
 			System.out.println("You have to be a student or a resident to borrow a book.");
